@@ -1,6 +1,6 @@
-# Wrapper for hello-world
+# Wrapper for docuseal
 
-Hello World is a simple, minimal project that serves as a template for creating a service that runs on embassyOS. This repository creates the `s9pk` package that is installed to run `hello-world` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
+Docuseal is a simple, minimal project that serves as a template for creating a service that runs on embassyOS. This repository creates the `s9pk` package that is installed to run `docuseal` on [embassyOS](https://github.com/Start9Labs/embassy-os/). Learn more about service packaging in the [Developer Docs](https://start9.com/latest/developer-docs/).
 
 ## Dependencies
 
@@ -55,27 +55,27 @@ cd embassy-os/backend/
 ./install-sdk.sh
 embassy-sdk init
 ```
-Now you are ready to build the `hello-world` package!
+Now you are ready to build the `docuseal` package!
 
 ## Cloning
 
 Clone the project locally:
 
 ```
-git clone https://github.com/Start9Labs/hello-world-wrapper.git
-cd hello-world-wrapper
+git clone https://github.com/Start9Labs/docuseal-wrapper.git
+cd docuseal-wrapper
 git submodule update --init --recursive
 ```
 
 ## Building
 
-To build the `hello-world` package for all platforms using embassy-sdk version >=0.3.3, run the following command:
+To build the `docuseal` package for all platforms using embassy-sdk version >=0.3.3, run the following command:
 
 ```
 make
 ```
 
-To build the `hello-world` package for a single platform using embassy-sdk version <=0.3.2, run:
+To build the `docuseal` package for a single platform using embassy-sdk version <=0.3.2, run:
 
 ```
 # for amd64
@@ -95,7 +95,7 @@ Run the following commands to determine successful install:
 ```
 embassy-cli auth login
 # Enter your embassy password
-embassy-cli --host https://embassy-server-name.local package install hello-world.s9pk
+embassy-cli --host https://embassy-server-name.local package install docuseal.s9pk
 ```
 
 If you already have your `embassy-cli` config file setup with a default `host`, you can install simply by running:
@@ -104,10 +104,10 @@ If you already have your `embassy-cli` config file setup with a default `host`, 
 make install
 ```
 
-> **Tip:** You can also install the hello-world.s9pk using **Sideload Service** under the **System > Manage** section.
+> **Tip:** You can also install the docuseal.s9pk using **Sideload Service** under the **System > Manage** section.
 
 ### Verify Install
 
-Go to your Embassy Services page, select **Hello World**, configure and start the service. Then, verify its interfaces are accessible.
+Go to your Embassy Services page, select **Docuseal**, configure and start the service. Then, verify its interfaces are accessible.
 
 **Done!** 

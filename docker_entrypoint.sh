@@ -1,3 +1,7 @@
 #!/bin/sh
 
-exec tini hello-world
+set -e
+
+echo "Starting Docuseal..."
+
+exec /app/bin/rails server
