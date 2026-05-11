@@ -1,20 +1,20 @@
 export const short = {
-  en_US: 'Bare bones example of a StartOS service',
-  es_ES: 'Ejemplo básico de un servicio de StartOS',
-  de_DE: 'Minimales Beispiel eines StartOS-Dienstes',
-  pl_PL: 'Podstawowy przykład usługi StartOS',
-  fr_FR: "Exemple minimaliste d'un service StartOS",
+  en_US: 'Open-source document signing platform',
+  es_ES: 'Plataforma de firma de documentos de código abierto',
+  de_DE: 'Open-Source-Plattform zum Signieren von Dokumenten',
+  pl_PL: 'Otwartoźródłowa platforma do podpisywania dokumentów',
+  fr_FR: 'Plateforme open source de signature de documents',
 }
 
 export const long = {
   en_US:
-    'Hello World is a template service that provides examples of basic StartOS features.',
+    'DocuSeal is an open-source platform for filling and signing PDF documents online. Build PDF forms with a drag-and-drop editor, collect signatures from multiple parties, and store completed documents on your own server.',
   es_ES:
-    'Hello World es un servicio de plantilla que proporciona ejemplos de las características básicas de StartOS.',
+    'DocuSeal es una plataforma de código abierto para rellenar y firmar documentos PDF en línea. Cree formularios PDF con un editor de arrastrar y soltar, recopile firmas de varias partes y almacene los documentos completados en su propio servidor.',
   de_DE:
-    'Hello World ist ein Vorlagen-Dienst, der Beispiele für grundlegende StartOS-Funktionen bietet.',
+    'DocuSeal ist eine Open-Source-Plattform zum Ausfüllen und Signieren von PDF-Dokumenten online. Erstellen Sie PDF-Formulare mit einem Drag-and-Drop-Editor, sammeln Sie Unterschriften von mehreren Parteien und speichern Sie die fertigen Dokumente auf Ihrem eigenen Server.',
   pl_PL:
-    'Hello World to szablon usługi, który zawiera przykłady podstawowych funkcji StartOS.',
+    'DocuSeal to otwartoźródłowa platforma do wypełniania i podpisywania dokumentów PDF online. Twórz formularze PDF za pomocą edytora typu przeciągnij i upuść, zbieraj podpisy od wielu stron i przechowuj gotowe dokumenty na własnym serwerze.',
   fr_FR:
-    'Hello World est un service modèle qui fournit des exemples des fonctionnalités de base de StartOS.',
+    'DocuSeal est une plateforme open source pour remplir et signer des documents PDF en ligne. Créez des formulaires PDF avec un éditeur glisser-déposer, collectez des signatures de plusieurs parties et stockez les documents complétés sur votre propre serveur.',
 }
