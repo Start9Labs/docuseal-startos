@@ -12,7 +12,6 @@ export const manifest = setupManifest({
   upstreamRepo: 'https://github.com/docusealco/docuseal',
   marketingUrl: 'https://www.docuseal.com/',
   donationUrl: null,
-  docsUrls: ['https://www.docuseal.com/docs'],
   description: { short, long },
   volumes: ['docuseal'],
   images: {
