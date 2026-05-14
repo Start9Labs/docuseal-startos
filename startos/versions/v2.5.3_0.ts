@@ -1,7 +1,7 @@
 import { VersionInfo, IMPOSSIBLE } from '@start9labs/start-sdk'
 
-export const v_2_5_3_0_a0 = VersionInfo.of({
-  version: '2.5.3:0-alpha.0',
+export const v_2_5_3_0 = VersionInfo.of({
+  version: '2.5.3:0',
   releaseNotes: {
     en_US: 'Initial release of DocuSeal on StartOS.',
     es_ES: 'Versión inicial de DocuSeal en StartOS.',
