@@ -2,7 +2,7 @@ import { setupManifest } from '@start9labs/start-sdk'
 import { long, short } from './i18n'
 
 const dockerImage = 'docuseal/docuseal'
-const dockerVersion = '2.5.2'
+const dockerVersion = '2.5.3'
 
 export const manifest = setupManifest({
   id: 'docuseal',
@@ -12,7 +12,6 @@ export const manifest = setupManifest({
   upstreamRepo: 'https://github.com/docusealco/docuseal',
   marketingUrl: 'https://www.docuseal.com/',
   donationUrl: null,
-  docsUrls: ['https://www.docuseal.com/docs'],
   description: { short, long },
   volumes: ['docuseal'],
   images: {
