@@ -1,15 +1,15 @@
 import { i18n } from './i18n'
 import { sdk } from './sdk'
-import { uiPort } from './utils'
+import { httpInterfaceId, uiHostId, uiPort } from './utils'
 
 export const setInterfaces = sdk.setupInterfaces(async ({ effects }) => {
-  const uiMulti = sdk.MultiHost.of(effects, 'ui-multi')
+  const uiMulti = sdk.MultiHost.of(effects, uiHostId)
   const uiMultiOrigin = await uiMulti.bindPort(uiPort, {
     protocol: 'http',
   })
   const ui = sdk.createInterface(effects, {
     name: i18n('Web UI'),
-    id: 'ui',
+    id: httpInterfaceId,
     description: i18n('The web interface of DocuSeal'),
     type: 'ui',
     masked: false,
