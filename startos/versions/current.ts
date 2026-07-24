@@ -1,7 +1,7 @@
 import { VersionInfo, IMPOSSIBLE } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '3.1.5:0',
+  version: '3.1.5:1',
   releaseNotes: {
     en_US: `Updated DocuSeal to 3.1.5.
 
