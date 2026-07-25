@@ -34,18 +34,18 @@
 
 ## Image and Container Runtime
 
-| Property      | Value                          |
-| ------------- | ------------------------------ |
+| Property      | Value                                     |
+| ------------- | ----------------------------------------- |
 | Image source  | Upstream `docuseal/docuseal` (unmodified) |
-| Architectures | x86_64, aarch64                |
-| Entrypoint    | Default upstream entrypoint    |
+| Architectures | x86_64, aarch64                           |
+| Entrypoint    | Default upstream entrypoint               |
 
 ---
 
 ## Volume and Data Layout
 
-| Volume     | Mount Point      | Purpose                                                                                          |
-| ---------- | ---------------- | ------------------------------------------------------------------------------------------------ |
+| Volume     | Mount Point      | Purpose                                                                                                                                                                    |
+| ---------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `docuseal` | `/data/docuseal` | SQLite database (`db.sqlite3`), `attachments/`, the auto-generated `docuseal.env` (holds `SECRET_KEY_BASE`), and the StartOS `store.json` (holds the selected primary URL) |
 
 `/data/docuseal` is the upstream container `WORKDIR` — the same path the official `docker-compose.yml` bind-mounts. The only StartOS-managed file is `store.json`; everything else lives where upstream puts it. Branding, SMTP credentials, etc. set via the admin UI are stored in encrypted rows in the SQLite DB.
@@ -66,14 +66,14 @@ The first boot runs Rails database migrations and generates `SECRET_KEY_BASE` au
 
 ## Configuration Management
 
-| StartOS-Managed                                                                                                  | Upstream-Managed                                                            |
-| ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `APP_URL` (env var) · `SMTP_*` (env vars when SMTP action is set to *system* or *custom*)                        | Branding, signing options, users, storage backend — via DocuSeal's own admin UI |
+| StartOS-Managed                                                                           | Upstream-Managed                                                                |
+| ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `APP_URL` (env var) · `SMTP_*` (env vars when SMTP action is set to _system_ or _custom_) | Branding, signing options, users, storage backend — via DocuSeal's own admin UI |
 
 DocuSeal is **strictly env-var driven** — no YAML/JSON config files, no CLI flags. This package sets these variables on the container:
 
-- **`APP_URL`** — primary URL DocuSeal uses for outbound links. Selected via the *Set Primary URL* action and persisted in `store.json`. When set, env always wins over the DB-stored value (DocuSeal's admin-UI App URL field is hidden).
-- **`SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_FROM`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_AUTHENTICATION`, `SMTP_ENABLE_STARTTLS`, `SMTP_ENABLE_SSL`** — set whenever the *Configure SMTP* action is in *system* or *custom* mode. When any `SMTP_*` env is set, DocuSeal's built-in Email/SMTP settings UI is hidden and env wins; setting the action back to *Disabled* unsets all SMTP env vars and re-exposes the upstream UI (which then reads from its own encrypted DB row).
+- **`APP_URL`** — primary URL DocuSeal uses for outbound links. Selected via the _Set Primary URL_ action and persisted in `store.json`. When set, env always wins over the DB-stored value (DocuSeal's admin-UI App URL field is hidden).
+- **`SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_FROM`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_AUTHENTICATION`, `SMTP_ENABLE_STARTTLS`, `SMTP_ENABLE_SSL`** — set whenever the _Configure SMTP_ action is in _system_ or _custom_ mode. When any `SMTP_*` env is set, DocuSeal's built-in Email/SMTP settings UI is hidden and env wins; setting the action back to _Disabled_ unsets all SMTP env vars and re-exposes the upstream UI (which then reads from its own encrypted DB row).
 
 Other notable env vars are deliberately left unset:
 
@@ -85,15 +85,15 @@ Other notable env vars are deliberately left unset:
 
 The following env vars are honored by the upstream image and may be added in future revisions of this package. They are listed here for reference only — none are set today.
 
-| Category | Variable                                                                                                                                                                                          | Notes                                                                                  |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| URLs     | `HOST`, `APP_URL`, `EMAIL_HOST`                                                                                                                                                                   | Control absolute URLs in emailed signing links.                                        |
-| SMTP     | `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_DOMAIN`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_AUTHENTICATION`, `SMTP_FROM`, `SMTP_ENABLE_STARTTLS`, `SMTP_ENABLE_SSL`, `SMTP_ENABLE_TLS`, `SMTP_SSL_VERIFY` | Outbound email; can also be configured in the admin UI.                                |
-| Database | `DATABASE_URL` (or `DATABASE_HOST`/`PORT`/`USER`/`PASSWORD`/`NAME`), `RUN_MIGRATIONS`                                                                                                             | Switch to Postgres/MySQL; `RUN_MIGRATIONS=false` skips auto-migrate at boot.           |
-| Storage  | `S3_ATTACHMENTS_BUCKET` + `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`/`AWS_REGION`, `GCS_BUCKET`/`GCS_PROJECT`/`GCS_CREDENTIALS`, `AZURE_CONTAINER`/`AZURE_STORAGE_ACCOUNT_NAME`/`AZURE_STORAGE_ACCESS_KEY`, `ACTIVE_STORAGE_PUBLIC`, `PRESIGNED_URLS_EXPIRE_MINUTES` | Off-volume attachment storage backends.                       |
-| Signing  | `CERTS`, `TRUSTED_CERTS`, `TIMESERVER_URL`, `PDF_FORMAT`, `PAGE_QUALITY`                                                                                                                          | PKCS#7 signing certificates / trust anchors / RFC 3161 timestamping.                   |
-| Tuning   | `RAILS_MAX_THREADS`, `RAILS_MIN_THREADS`, `WEB_CONCURRENCY`, `SIDEKIQ_THREADS`                                                                                                                    | Puma + Sidekiq concurrency.                                                            |
-| Misc     | `SESSION_REMEMBER_DAYS`, `ENCRYPTION_SECRET`, `SIDEKIQ_BASIC_AUTH_PASSWORD`                                                                                                                       | Session lifetime, custom encryption key, Sidekiq web UI auth.                          |
+| Category | Variable                                                                                                                                                                                                                                                              | Notes                                                                        |
+| -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| URLs     | `HOST`, `APP_URL`, `EMAIL_HOST`                                                                                                                                                                                                                                       | Control absolute URLs in emailed signing links.                              |
+| SMTP     | `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_DOMAIN`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_AUTHENTICATION`, `SMTP_FROM`, `SMTP_ENABLE_STARTTLS`, `SMTP_ENABLE_SSL`, `SMTP_ENABLE_TLS`, `SMTP_SSL_VERIFY`                                                                     | Outbound email; can also be configured in the admin UI.                      |
+| Database | `DATABASE_URL` (or `DATABASE_HOST`/`PORT`/`USER`/`PASSWORD`/`NAME`), `RUN_MIGRATIONS`                                                                                                                                                                                 | Switch to Postgres/MySQL; `RUN_MIGRATIONS=false` skips auto-migrate at boot. |
+| Storage  | `S3_ATTACHMENTS_BUCKET` + `AWS_ACCESS_KEY_ID`/`AWS_SECRET_ACCESS_KEY`/`AWS_REGION`, `GCS_BUCKET`/`GCS_PROJECT`/`GCS_CREDENTIALS`, `AZURE_CONTAINER`/`AZURE_STORAGE_ACCOUNT_NAME`/`AZURE_STORAGE_ACCESS_KEY`, `ACTIVE_STORAGE_PUBLIC`, `PRESIGNED_URLS_EXPIRE_MINUTES` | Off-volume attachment storage backends.                                      |
+| Signing  | `CERTS`, `TRUSTED_CERTS`, `TIMESERVER_URL`, `PDF_FORMAT`, `PAGE_QUALITY`                                                                                                                                                                                              | PKCS#7 signing certificates / trust anchors / RFC 3161 timestamping.         |
+| Tuning   | `RAILS_MAX_THREADS`, `RAILS_MIN_THREADS`, `WEB_CONCURRENCY`, `SIDEKIQ_THREADS`                                                                                                                                                                                        | Puma + Sidekiq concurrency.                                                  |
+| Misc     | `SESSION_REMEMBER_DAYS`, `ENCRYPTION_SECRET`, `SIDEKIQ_BASIC_AUTH_PASSWORD`                                                                                                                                                                                           | Session lifetime, custom encryption key, Sidekiq web UI auth.                |
 
 ---
 
@@ -129,12 +129,12 @@ The init flow auto-selects the `.local` URL on fresh installs and silently re-se
 - **Purpose:** configure the SMTP server DocuSeal uses to send signing-request emails, password-reset mails, etc.
 - **Visibility:** always enabled.
 - **Availability:** any service status.
-- **Inputs:** the standard StartOS SMTP composite — *Disabled*, *System* (re-uses your StartOS-wide system SMTP, with optional custom `From:` override), or *Custom* (you provide host/port/from/username/password/security).
+- **Inputs:** the standard StartOS SMTP composite — _Disabled_, _System_ (re-uses your StartOS-wide system SMTP, with optional custom `From:` override), or _Custom_ (you provide host/port/from/username/password/security).
 - **Outputs:** writes the selection into `store.json`. The change is reactive: the daemon restarts and DocuSeal boots with the new env vars.
 
-When this action is in *system* mode and the StartOS host-level system SMTP credentials are rotated, the new credentials propagate automatically (reactive read of `sdk.getSystemSmtp`); the daemon restarts and DocuSeal picks them up — no need to re-open this action.
+When this action is in _system_ mode and the StartOS host-level system SMTP credentials are rotated, the new credentials propagate automatically (reactive read of `sdk.getSystemSmtp`); the daemon restarts and DocuSeal picks them up — no need to re-open this action.
 
-When SMTP is *Disabled* (the default), no SMTP env vars are set and DocuSeal's own Email/SMTP settings UI is available — configure SMTP from inside DocuSeal if you prefer that path. While SMTP is in *system* or *custom* mode, DocuSeal's built-in Email/SMTP UI is hidden (env wins).
+When SMTP is _Disabled_ (the default), no SMTP env vars are set and DocuSeal's own Email/SMTP settings UI is available — configure SMTP from inside DocuSeal if you prefer that path. While SMTP is in _system_ or _custom_ mode, DocuSeal's built-in Email/SMTP UI is hidden (env wins).
 
 ---
 
@@ -152,9 +152,9 @@ When SMTP is *Disabled* (the default), no SMTP env vars are set and DocuSeal's o
 
 ## Health Checks
 
-| Check         | Method                | Grace period | Messages                                                                                          |
-| ------------- | --------------------- | ------------ | ------------------------------------------------------------------------------------------------- |
-| Web Interface | Port listening (3000) | 90 s         | Success: "The web interface is ready" / Error: "The web interface is not ready"                   |
+| Check         | Method                | Grace period | Messages                                                                        |
+| ------------- | --------------------- | ------------ | ------------------------------------------------------------------------------- |
+| Web Interface | Port listening (3000) | 90 s         | Success: "The web interface is ready" / Error: "The web interface is not ready" |
 
 The grace period covers first-boot Rails migrations and `SECRET_KEY_BASE` generation, during which the port is not yet bound.
 
@@ -170,8 +170,8 @@ None.
 
 1. **SQLite only.** Postgres and MySQL are supported by upstream via `DATABASE_URL`, but no sidecar is wired up here. Suitable for personal / small-team use.
 2. **Branding and signing options** are configured exclusively through DocuSeal's own admin UI — no StartOS actions for them yet.
-3. **No outbound email by default.** The *Configure SMTP* action defaults to *Disabled*; configure system or custom SMTP via the action (or use DocuSeal's own Email/SMTP UI while the action is *Disabled*).
-4. **`APP_URL` and `SMTP_*` env vars override the in-app fields.** While the *Set Primary URL* action is set, DocuSeal hides its "App URL" UI; while *Configure SMTP* is in *system* or *custom* mode, DocuSeal hides its Email/SMTP UI. The env contract always wins over the in-app settings.
+3. **No outbound email by default.** The _Configure SMTP_ action defaults to _Disabled_; configure system or custom SMTP via the action (or use DocuSeal's own Email/SMTP UI while the action is _Disabled_).
+4. **`APP_URL` and `SMTP_*` env vars override the in-app fields.** While the _Set Primary URL_ action is set, DocuSeal hides its "App URL" UI; while _Configure SMTP_ is in _system_ or _custom_ mode, DocuSeal hides its Email/SMTP UI. The env contract always wins over the in-app settings.
 
 ---
 
@@ -185,7 +185,7 @@ None.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for build instructions and development workflow.
+Build and development workflow follow the StartOS packaging guide: <https://docs.start9.com/packaging>. Keep `README.md`, `instructions.md`, and `AGENTS.md` in sync with any change to user-visible behavior or package structure.
 
 ---
 
