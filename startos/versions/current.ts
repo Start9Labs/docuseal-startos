@@ -1,48 +1,48 @@
 import { VersionInfo, IMPOSSIBLE } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '3.1.7:0',
+  version: '3.2.0:0',
   releaseNotes: {
-    en_US: `Updated DocuSeal to 3.1.7.
+    en_US: `Updated DocuSeal to 3.2.0.
 
-- Reworks the web app on phones and small screens: modals now open as full pages, settings get their own navigation, and filters, pagination and layouts have been fixed throughout.
-- One-time code fields now bring up the numeric keypad on mobile.
-- Setting up or removing two-factor authentication is now rate-limited, making it harder to brute-force the confirmation code.
-- Updates Rails to 8.1.3.1, which includes a security fix.
+- Fixes a hang when processing PDFs with malformed form fields.
+- Signers who have not finished signing can no longer download documents already completed by others.
+- The shared-link email verification endpoint now only sends codes for templates that have shared-link two-factor authentication enabled, so it can no longer be used to send mail from your server to arbitrary addresses.
+- Improves and localizes date and time formats, including on signature stamps and in the audit trail.
 
-Full release notes: https://github.com/docusealco/docuseal/releases/tag/3.1.7`,
-    es_ES: `Actualiza DocuSeal a 3.1.7.
+Full release notes: https://github.com/docusealco/docuseal/releases/tag/3.2.0`,
+    es_ES: `Actualiza DocuSeal a 3.2.0.
 
-- Rediseña la aplicación web en teléfonos y pantallas pequeñas: las ventanas modales ahora se abren como páginas completas, los ajustes tienen su propia navegación y se han corregido los filtros, la paginación y los diseños en general.
-- Los campos de código de un solo uso ahora abren el teclado numérico en el móvil.
-- Configurar o eliminar la autenticación de dos factores ahora está limitado por frecuencia, lo que dificulta forzar el código de confirmación por fuerza bruta.
-- Actualiza Rails a 8.1.3.1, que incluye una corrección de seguridad.
+- Corrige un bloqueo al procesar archivos PDF con campos de formulario mal formados.
+- Quienes firman y aún no han terminado ya no pueden descargar los documentos que otros han completado.
+- El punto de acceso de verificación por correo de los enlaces compartidos solo envía códigos para plantillas que tengan activada la autenticación de dos factores del enlace compartido, por lo que ya no puede usarse para enviar correo desde tu servidor a direcciones arbitrarias.
+- Mejora y localiza los formatos de fecha y hora, incluidos los sellos de firma y el registro de auditoría.
 
-Notas de la versión completas: https://github.com/docusealco/docuseal/releases/tag/3.1.7`,
-    de_DE: `Aktualisiert DocuSeal auf 3.1.7.
+Notas de la versión completas: https://github.com/docusealco/docuseal/releases/tag/3.2.0`,
+    de_DE: `Aktualisiert DocuSeal auf 3.2.0.
 
-- Überarbeitet die Web-App auf Telefonen und kleinen Bildschirmen: Modale Fenster öffnen sich nun als vollständige Seiten, die Einstellungen erhalten eine eigene Navigation, und Filter, Seitennummerierung sowie Layouts wurden durchgehend korrigiert.
-- Felder für Einmalcodes öffnen auf Mobilgeräten jetzt die numerische Tastatur.
-- Das Einrichten und Entfernen der Zwei-Faktor-Authentifizierung ist nun ratenbegrenzt, was das Erraten des Bestätigungscodes per Brute Force erschwert.
-- Aktualisiert Rails auf 8.1.3.1, was eine Sicherheitskorrektur enthält.
+- Behebt ein Hängenbleiben beim Verarbeiten von PDFs mit fehlerhaften Formularfeldern.
+- Unterzeichner, die noch nicht fertig unterschrieben haben, können Dokumente, die andere bereits abgeschlossen haben, nicht mehr herunterladen.
+- Der E-Mail-Verifizierungsendpunkt für geteilte Links versendet nur noch Codes für Vorlagen mit aktivierter Zwei-Faktor-Authentifizierung für geteilte Links und kann somit nicht mehr genutzt werden, um über Ihren Server E-Mails an beliebige Adressen zu senden.
+- Verbessert und lokalisiert Datums- und Zeitformate, auch auf Signaturstempeln und im Prüfprotokoll.
 
-Vollständige Versionshinweise: https://github.com/docusealco/docuseal/releases/tag/3.1.7`,
-    pl_PL: `Aktualizuje DocuSeal do 3.1.7.
+Vollständige Versionshinweise: https://github.com/docusealco/docuseal/releases/tag/3.2.0`,
+    pl_PL: `Aktualizuje DocuSeal do 3.2.0.
 
-- Przebudowuje aplikację internetową na telefonach i małych ekranach: okna modalne otwierają się teraz jako pełne strony, ustawienia mają własną nawigację, a filtry, paginacja i układy zostały poprawione w całym interfejsie.
-- Pola kodu jednorazowego otwierają teraz klawiaturę numeryczną na urządzeniach mobilnych.
-- Konfigurowanie i usuwanie uwierzytelniania dwuskładnikowego jest teraz ograniczane częstotliwościowo, co utrudnia złamanie kodu potwierdzającego metodą siłową.
-- Aktualizuje Rails do 8.1.3.1, co obejmuje poprawkę bezpieczeństwa.
+- Naprawia zawieszanie się podczas przetwarzania plików PDF z uszkodzonymi polami formularza.
+- Osoby podpisujące, które nie zakończyły jeszcze podpisywania, nie mogą już pobierać dokumentów ukończonych wcześniej przez innych.
+- Punkt końcowy weryfikacji e-mail dla udostępnionych odnośników wysyła kody wyłącznie dla szablonów z włączonym uwierzytelnianiem dwuskładnikowym udostępnionego odnośnika, więc nie można go już wykorzystać do wysyłania wiadomości z Twojego serwera na dowolne adresy.
+- Ulepsza i lokalizuje formaty daty i godziny, również na pieczęciach podpisu i w dzienniku audytu.
 
-Pełne informacje o wydaniu: https://github.com/docusealco/docuseal/releases/tag/3.1.7`,
-    fr_FR: `Met à jour DocuSeal vers 3.1.7.
+Pełne informacje o wydaniu: https://github.com/docusealco/docuseal/releases/tag/3.2.0`,
+    fr_FR: `Met à jour DocuSeal vers 3.2.0.
 
-- Refond l'application web sur téléphones et petits écrans : les fenêtres modales s'ouvrent désormais en pages complètes, les paramètres disposent de leur propre navigation, et les filtres, la pagination et les mises en page ont été corrigés dans l'ensemble.
-- Les champs de code à usage unique ouvrent maintenant le clavier numérique sur mobile.
-- La configuration et la suppression de l'authentification à deux facteurs sont désormais limitées en fréquence, ce qui complique la recherche du code de confirmation par force brute.
-- Met à jour Rails vers 8.1.3.1, ce qui inclut un correctif de sécurité.
+- Corrige un blocage lors du traitement de PDF dont les champs de formulaire sont mal formés.
+- Les signataires qui n'ont pas terminé de signer ne peuvent plus télécharger les documents déjà complétés par d'autres.
+- Le point d'accès de vérification par e-mail des liens partagés n'envoie plus de codes que pour les modèles dont l'authentification à deux facteurs du lien partagé est activée ; il ne peut donc plus servir à envoyer des e-mails depuis votre serveur vers des adresses arbitraires.
+- Améliore et localise les formats de date et d'heure, y compris sur les tampons de signature et dans le journal d'audit.
 
-Notes de version complètes : https://github.com/docusealco/docuseal/releases/tag/3.1.7`,
+Notes de version complètes : https://github.com/docusealco/docuseal/releases/tag/3.2.0`,
   },
   migrations: {
     up: async ({ effects }) => {},
