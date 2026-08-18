@@ -2,7 +2,7 @@ import { setupManifest } from '@start9labs/start-sdk'
 import { long, short } from './i18n'
 
 const dockerImage = 'docuseal/docuseal'
-const dockerVersion = '3.2.0'
+const dockerVersion = '3.2.1'
 
 export const manifest = setupManifest({
   id: 'docuseal',
