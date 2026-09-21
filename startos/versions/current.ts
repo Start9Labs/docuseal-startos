@@ -1,58 +1,73 @@
 import { VersionInfo, IMPOSSIBLE } from '@start9labs/start-sdk'
 
 export const current = VersionInfo.of({
-  version: '3.2.3:0',
+  version: '3.2.6:0',
   releaseNotes: {
-    en_US: `Updated DocuSeal to 3.2.3, which also carries the 3.2.1 and 3.2.2 releases.
+    en_US: `Updated DocuSeal to 3.2.6, which also includes 3.2.4 and 3.2.5.
 
-- The signature validation tool and the verification API now share one implementation, and the "changed after signing" warning is tied to the most recent valid signature, so documents with several signatures are judged correctly.
-- Setting up or removing two-factor authentication is rate-limited on every attempt, not only on failed ones.
-- BMP images in uploaded documents decode faster, and outsized ones are rejected instead of exhausting memory.
-- Email address typo correction no longer rewrites legitimate addresses at domains that merely resemble a common provider.
-- Fixes right-to-left text in the audit log PDF and improves extraction of AcroForm fields when importing PDFs.
-- Assorted mobile layout, filter and bug fixes.
+- Includes various bug fixes and security improvements from 3.2.6.
+- API callers can set an email message subject without supplying a body.
+- XLSX exports use less memory and preserve boolean values.
+- Delegated signers no longer inherit the previous signer's details, invitation events identify the correct party, and copied fields retain signer roles.
+- Filenames containing slashes are handled safely, and archived users no longer receive completion or decline emails.
+- Includes PDF handling fixes, stricter webhook header validation, and a loopback-only embedded Redis server.
 
-Full release notes: https://github.com/docusealco/docuseal/releases/tag/3.2.3`,
-    es_ES: `Actualiza DocuSeal a 3.2.3, que también incluye las versiones 3.2.1 y 3.2.2.
+Full release notes:
+- https://github.com/docusealco/docuseal/releases/tag/3.2.4
+- https://github.com/docusealco/docuseal/releases/tag/3.2.5
+- https://github.com/docusealco/docuseal/releases/tag/3.2.6`,
+    es_ES: `Actualiza DocuSeal a 3.2.6, que también incluye las versiones 3.2.4 y 3.2.5.
 
-- La herramienta de validación de firmas y la API de verificación comparten ahora una sola implementación, y el aviso de «modificado tras la firma» se asocia a la firma válida más reciente, de modo que los documentos con varias firmas se evalúan correctamente.
-- La configuración y la eliminación de la autenticación de dos factores están limitadas por frecuencia en cada intento, no solo en los fallidos.
-- Las imágenes BMP de los documentos subidos se decodifican más rápido y las de tamaño excesivo se rechazan en lugar de agotar la memoria.
-- La corrección de erratas en las direcciones de correo ya no reescribe direcciones legítimas en dominios que solo se parecen a un proveedor conocido.
-- Corrige el texto de derecha a izquierda en el PDF del registro de auditoría y mejora la extracción de campos AcroForm al importar archivos PDF.
-- Varias correcciones de diseño móvil, filtros y errores.
+- Incluye diversas correcciones de errores y mejoras de seguridad de la versión 3.2.6.
+- Los clientes de la API pueden definir el asunto de un mensaje de correo electrónico sin proporcionar un cuerpo.
+- Las exportaciones XLSX usan menos memoria y conservan los valores booleanos.
+- Los firmantes delegados ya no heredan los datos del firmante anterior, los eventos de invitación identifican a la parte correcta y los campos copiados conservan los roles de firmante.
+- Los nombres de archivo que contienen barras se gestionan de forma segura y los usuarios archivados ya no reciben correos de finalización o rechazo.
+- Incluye correcciones en el manejo de PDF, una validación más estricta de los encabezados de webhook y un servidor Redis integrado limitado a la interfaz local.
 
-Notas de la versión completas: https://github.com/docusealco/docuseal/releases/tag/3.2.3`,
-    de_DE: `Aktualisiert DocuSeal auf 3.2.3, das auch die Versionen 3.2.1 und 3.2.2 enthält.
+Notas de la versión completas:
+- https://github.com/docusealco/docuseal/releases/tag/3.2.4
+- https://github.com/docusealco/docuseal/releases/tag/3.2.5
+- https://github.com/docusealco/docuseal/releases/tag/3.2.6`,
+    de_DE: `Aktualisiert DocuSeal auf 3.2.6, einschließlich der Versionen 3.2.4 und 3.2.5.
 
-- Das Werkzeug zur Signaturprüfung und die Verifizierungs-API nutzen jetzt dieselbe Implementierung, und der Hinweis „nach dem Signieren geändert“ bezieht sich auf die jüngste gültige Signatur, sodass Dokumente mit mehreren Signaturen korrekt bewertet werden.
-- Das Einrichten und Entfernen der Zwei-Faktor-Authentifizierung ist bei jedem Versuch ratenbegrenzt, nicht nur bei fehlgeschlagenen.
-- BMP-Bilder in hochgeladenen Dokumenten werden schneller dekodiert, und übergroße Bilder werden abgewiesen, statt den Speicher zu erschöpfen.
-- Die Tippfehlerkorrektur für E-Mail-Adressen schreibt gültige Adressen bei Domains, die einem bekannten Anbieter nur ähneln, nicht mehr um.
-- Behebt die Darstellung von Rechts-nach-links-Text im Prüfprotokoll-PDF und verbessert das Auslesen von AcroForm-Feldern beim Importieren von PDFs.
-- Verschiedene Korrekturen an mobilen Layouts, Filtern und Fehlern.
+- Enthält verschiedene Fehlerbehebungen und Sicherheitsverbesserungen aus Version 3.2.6.
+- API-Clients können den Betreff einer E-Mail-Nachricht festlegen, ohne einen Nachrichtentext anzugeben.
+- XLSX-Exporte benötigen weniger Arbeitsspeicher und behalten boolesche Werte bei.
+- Delegierte Unterzeichner übernehmen keine Angaben des vorherigen Unterzeichners mehr, Einladungsereignisse nennen die richtige Partei und kopierte Felder behalten die Unterzeichnerrollen bei.
+- Dateinamen mit Schrägstrichen werden sicher verarbeitet und archivierte Benutzer erhalten keine Abschluss- oder Ablehnungs-E-Mails mehr.
+- Enthält Korrekturen bei der PDF-Verarbeitung, eine strengere Prüfung von Webhook-Headern und einen ausschließlich lokal erreichbaren eingebetteten Redis-Server.
 
-Vollständige Versionshinweise: https://github.com/docusealco/docuseal/releases/tag/3.2.3`,
-    pl_PL: `Aktualizuje DocuSeal do 3.2.3, które zawiera również wydania 3.2.1 i 3.2.2.
+Vollständige Versionshinweise:
+- https://github.com/docusealco/docuseal/releases/tag/3.2.4
+- https://github.com/docusealco/docuseal/releases/tag/3.2.5
+- https://github.com/docusealco/docuseal/releases/tag/3.2.6`,
+    pl_PL: `Aktualizuje DocuSeal do 3.2.6, uwzględniając również wersje 3.2.4 i 3.2.5.
 
-- Narzędzie do weryfikacji podpisu i API weryfikacji korzystają teraz z jednej implementacji, a ostrzeżenie „zmieniono po podpisaniu” odnosi się do najnowszego prawidłowego podpisu, dzięki czemu dokumenty z wieloma podpisami są oceniane poprawnie.
-- Konfigurowanie i usuwanie uwierzytelniania dwuskładnikowego jest ograniczane częstotliwościowo przy każdej próbie, nie tylko przy nieudanych.
-- Obrazy BMP w przesłanych dokumentach dekodują się szybciej, a zbyt duże są odrzucane zamiast wyczerpywać pamięć.
-- Poprawianie literówek w adresach e-mail nie przepisuje już prawidłowych adresów w domenach, które jedynie przypominają znanego dostawcę.
-- Naprawia tekst pisany od prawej do lewej w pliku PDF dziennika audytu i ulepsza odczyt pól AcroForm podczas importowania plików PDF.
-- Różne poprawki układu mobilnego, filtrów i błędów.
+- Zawiera różne poprawki błędów i ulepszenia zabezpieczeń z wersji 3.2.6.
+- Klienci API mogą ustawić temat wiadomości e-mail bez podawania jej treści.
+- Eksporty XLSX zużywają mniej pamięci i zachowują wartości logiczne.
+- Delegowani podpisujący nie dziedziczą już danych poprzedniego podpisującego, zdarzenia zaproszeń wskazują właściwą stronę, a kopiowane pola zachowują role podpisujących.
+- Nazwy plików zawierające ukośniki są bezpiecznie obsługiwane, a zarchiwizowani użytkownicy nie otrzymują już wiadomości o ukończeniu lub odrzuceniu.
+- Zawiera poprawki obsługi plików PDF, dokładniejszą walidację nagłówków webhooków oraz wbudowany serwer Redis dostępny wyłącznie lokalnie.
 
-Pełne informacje o wydaniu: https://github.com/docusealco/docuseal/releases/tag/3.2.3`,
-    fr_FR: `Met à jour DocuSeal vers 3.2.3, qui reprend également les versions 3.2.1 et 3.2.2.
+Pełne informacje o wydaniu:
+- https://github.com/docusealco/docuseal/releases/tag/3.2.4
+- https://github.com/docusealco/docuseal/releases/tag/3.2.5
+- https://github.com/docusealco/docuseal/releases/tag/3.2.6`,
+    fr_FR: `Met à jour DocuSeal vers 3.2.6, qui inclut également les versions 3.2.4 et 3.2.5.
 
-- L'outil de validation de signature et l'API de vérification partagent désormais une seule implémentation, et l'avertissement « modifié après signature » se rapporte à la signature valide la plus récente, si bien que les documents comportant plusieurs signatures sont évalués correctement.
-- La configuration et la suppression de l'authentification à deux facteurs sont limitées en fréquence à chaque tentative, et non aux seules tentatives échouées.
-- Les images BMP des documents importés sont décodées plus rapidement, et celles de taille excessive sont refusées au lieu d'épuiser la mémoire.
-- La correction des fautes de frappe dans les adresses e-mail ne réécrit plus les adresses légitimes sur des domaines qui ressemblent seulement à un fournisseur connu.
-- Corrige le texte de droite à gauche dans le PDF du journal d'audit et améliore l'extraction des champs AcroForm lors de l'importation de PDF.
-- Diverses corrections de mise en page mobile, de filtres et de bogues.
+- Inclut diverses corrections de bogues et améliorations de sécurité de la version 3.2.6.
+- Les clients de l'API peuvent définir l'objet d'un e-mail sans fournir de corps de message.
+- Les exportations XLSX utilisent moins de mémoire et conservent les valeurs booléennes.
+- Les signataires délégués n'héritent plus des informations du signataire précédent, les événements d'invitation identifient la bonne partie et les champs copiés conservent les rôles des signataires.
+- Les noms de fichiers contenant des barres obliques sont traités en toute sécurité et les utilisateurs archivés ne reçoivent plus les e-mails de finalisation ou de refus.
+- Inclut des correctifs de traitement des PDF, une validation plus stricte des en-têtes de webhook et un serveur Redis intégré accessible uniquement en local.
 
-Notes de version complètes : https://github.com/docusealco/docuseal/releases/tag/3.2.3`,
+Notes de version complètes :
+- https://github.com/docusealco/docuseal/releases/tag/3.2.4
+- https://github.com/docusealco/docuseal/releases/tag/3.2.5
+- https://github.com/docusealco/docuseal/releases/tag/3.2.6`,
   },
   migrations: {
     up: async ({ effects }) => {},
