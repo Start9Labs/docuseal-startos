@@ -18,14 +18,21 @@ Freshly scaffolded? Work the
 guide page, not a file in this repo — read it, don't copy it in.
 
 Keep `README.md` (technical reference for an AI support or administering agent) and
-`instructions.md` (end-user docs) in sync with your changes.
+`instructions.md` (end-user docs) in sync with your changes. This file restates neither:
+whoever changes the package has both, so it carries only what they don't — repo mechanics,
+a change that looks right and is not, where the next thing gets added, a naming trap, a
+build or test invocation particular to this repo.
 
-**Bugs and feature requests are GitHub issues on this repo** — file them as you find them.
+**Fix a defect you spot rather than reporting it** — you have the package open and the
+context to be sure. File **a GitHub issue on this repo** only when the call isn't yours to
+make: you can't pin the cause down, two defensible fixes exist, or it's too large to ride on
+the work in hand. An open issue is a report, not a queue — implement one when you're asked
+to or when it's labelled `Approved`, then close it with `Closes #<n>`.
+
 Don't record work in the repo instead: no `TODO.md`, no `NOTES.md`, no `PLAN.md`. What you
 verified, tried, and decided belongs in the commit message and the PR body.
 
 ## This repo
 
-- **Setting any `SMTP_*` variable hides DocuSeal's own Email settings screen.** That is upstream behaviour, not ours, and it is why the SMTP action has a Disabled option: it is the only way to hand email configuration back to the application. Don't emit partial SMTP environment.
-- **`APP_URL` is re-asserted at init, not just seeded.** `init/setPrimaryUrl.ts` replaces it whenever the stored address is no longer among the interface's published addresses, so a network change cannot leave signing links pointing somewhere unreachable. Keep the check, and keep the `.local` fallback last-resort rather than preferred output.
-- **The store is the only writable config surface**, and it is on the same volume as DocuSeal's database. Anything added to it is backed up with the documents.
+- **Never emit a partial set of `SMTP_*` variables.** Any one of them hides DocuSeal's own Email settings screen, so a partial set leaves email neither working nor configurable in the app.
+- **Give DocuSeal `primaryUrl.bestUsable`, never `store.json`'s `APP_URL` directly.** The stored choice is kept while its address is gone, so read raw it can name an address nobody can reach.

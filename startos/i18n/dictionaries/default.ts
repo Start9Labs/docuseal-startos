@@ -11,7 +11,7 @@ const dict = {
   'Web UI': 4,
   'The web interface of DocuSeal': 5,
 
-  // actions/setPrimaryUrl.ts
+  // primaryUrl.ts
   URL: 6,
   'Set Primary URL': 7,
   'Choose which of your DocuSeal URLs should serve as the primary URL for the purposes of generating signing-request links, webhook callbacks, and absolute URLs in the API.': 8,
@@ -22,6 +22,9 @@ const dict = {
   // actions/manageSmtp.ts
   'Configure SMTP': 10,
   'Configure SMTP credentials for sending signing-request emails. Choose StartOS system SMTP, supply your own server, or disable. While SMTP is managed here, DocuSeal\'s built-in Email/SMTP settings UI is hidden — set this action to "Disabled" if you want to manage SMTP from inside DocuSeal instead.': 11,
+
+  // init/primaryUrlTask.ts
+  'Choose the URL DocuSeal puts in the signing-request links and webhook callbacks it sends': 12,
 } as const
 
 /**

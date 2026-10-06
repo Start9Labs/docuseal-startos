@@ -1,7 +1,7 @@
+import { primaryUrl } from '../primaryUrl'
 import { sdk } from '../sdk'
 import { manageSmtp } from './manageSmtp'
-import { setPrimaryUrl } from './setPrimaryUrl'
 
 export const actions = sdk.Actions.of()
-  .addAction(setPrimaryUrl)
+  .addAction(primaryUrl.action)
   .addAction(manageSmtp)
