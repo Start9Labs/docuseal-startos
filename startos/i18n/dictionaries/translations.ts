@@ -14,6 +14,7 @@ export default {
     9: 'store.json no encontrado',
     10: 'Configurar SMTP',
     11: 'Configure las credenciales SMTP para el envío de correos de solicitud de firma. Elija el SMTP del sistema StartOS, proporcione su propio servidor o desactívelo. Mientras SMTP se gestiona aquí, la interfaz integrada de configuración de Email/SMTP de DocuSeal está oculta — establezca esta acción en "Disabled" si prefiere gestionar SMTP desde DocuSeal.',
+    12: 'Elija la URL que DocuSeal incluye en los enlaces de solicitud de firma y las devoluciones de llamada de webhook que envía',
   },
   de_DE: {
     0: 'Starte DocuSeal!',
@@ -28,6 +29,7 @@ export default {
     9: 'store.json nicht gefunden',
     10: 'SMTP konfigurieren',
     11: 'Konfigurieren Sie SMTP-Zugangsdaten für den Versand von Signaturanfragen-E-Mails. Wählen Sie das StartOS-System-SMTP, einen eigenen Server oder deaktivieren Sie SMTP. Während SMTP hier verwaltet wird, ist die integrierte Email/SMTP-Einstellungsoberfläche von DocuSeal ausgeblendet — setzen Sie diese Aktion auf "Disabled", wenn Sie SMTP lieber innerhalb von DocuSeal verwalten möchten.',
+    12: 'Wählen Sie die URL, die DocuSeal in die von ihm versendeten Signaturanfrage-Links und Webhook-Callbacks einsetzt',
   },
   pl_PL: {
     0: 'Uruchamianie DocuSeal!',
@@ -42,6 +44,7 @@ export default {
     9: 'nie znaleziono store.json',
     10: 'Konfiguruj SMTP',
     11: 'Skonfiguruj poświadczenia SMTP do wysyłania e-maili z prośbami o podpis. Wybierz systemowy SMTP StartOS, podaj własny serwer lub wyłącz. Gdy SMTP jest zarządzany tutaj, wbudowany interfejs ustawień Email/SMTP w DocuSeal jest ukryty — ustaw tę akcję na "Disabled", jeśli wolisz zarządzać SMTP w DocuSeal.',
+    12: 'Wybierz adres URL, który DocuSeal umieszcza w wysyłanych linkach do żądań podpisu i wywołaniach zwrotnych webhooków',
   },
   fr_FR: {
     0: 'Démarrage de DocuSeal !',
@@ -56,5 +59,6 @@ export default {
     9: 'store.json introuvable',
     10: 'Configurer SMTP',
     11: "Configurez les identifiants SMTP pour l'envoi d'e-mails de demande de signature. Choisissez le SMTP système de StartOS, fournissez votre propre serveur ou désactivez. Tant que SMTP est géré ici, l'interface intégrée de paramètres Email/SMTP de DocuSeal est masquée — définissez cette action sur « Disabled » si vous préférez gérer SMTP depuis DocuSeal.",
+    12: "Choisissez l'URL que DocuSeal place dans les liens de demande de signature et les rappels webhook qu'il envoie",
   },
 } satisfies Record<string, LangDict>

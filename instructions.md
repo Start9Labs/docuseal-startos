@@ -13,7 +13,7 @@
 ## Getting set up
 
 1. Open the **Web UI** and create the initial admin account on DocuSeal's sign-up screen. The first launch may take up to a minute while the database is initialised.
-2. Run the **Set Primary URL** action and pick the URL you want DocuSeal to use as the canonical base for signing links, webhook callbacks, audit-trail PDFs, and absolute URLs in the API. On a fresh install StartOS pre-selects your `.local` (mDNS) URL — change it if you want signing-request emails to point at a Tor `.onion`, a custom domain, or another address you've enabled on the interface.
+2. Complete the **Set Primary URL** task: pick the URL you want DocuSeal to use as the base for signing links, webhook callbacks, audit-trail PDFs, and absolute URLs in the API. The `.local` URL is preselected — choose another if signing-request emails should point at a custom domain, a Tor `.onion`, or another address you've enabled on the interface. Until you choose, DocuSeal uses the `.local` URL.
 3. Run the **Configure SMTP** action if you want DocuSeal to send signing-request, password-reset, and notification emails. Choose **System** to reuse the StartOS-wide SMTP credentials (optionally with a custom `From:` override), **Custom** to supply your own server, or leave it **Disabled** to handle SMTP from inside DocuSeal's own Email/SMTP settings instead.
 
 ## Using DocuSeal
@@ -22,7 +22,7 @@ Build templates, send signing requests, and manage signers and submissions from 
 
 ### Actions
 
-- **Set Primary URL** — change the URL DocuSeal uses to build outbound links. Re-run this whenever you want signing requests and webhooks to point at a different address (e.g. switching from `.local` to a custom domain).
+- **Set Primary URL** — change the URL DocuSeal uses to build outbound links. Re-run this whenever you want signing requests and webhooks to point at a different address (e.g. switching from `.local` to a custom domain). If the chosen address stops being one of DocuSeal's addresses, DocuSeal falls back to the `.local` URL and the task reappears until the address returns or you choose another. **Open UI** opens DocuSeal at this URL.
 - **Configure SMTP** — switch between **Disabled**, **System**, and **Custom** SMTP. While this action is in **System** or **Custom** mode, DocuSeal's built-in Email/SMTP settings page is hidden and the action's values win; set it back to **Disabled** if you want to manage SMTP from inside DocuSeal instead.
 
 ## Limitations

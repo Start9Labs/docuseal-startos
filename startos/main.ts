@@ -1,16 +1,17 @@
 import { T } from '@start9labs/start-sdk'
 import { storeJson } from './fileModels/store.json'
 import { i18n } from './i18n'
+import { primaryUrl } from './primaryUrl'
 import { sdk } from './sdk'
 import { uiPort } from './utils'
 
 export const main = sdk.setupMain(async ({ effects }) => {
   console.info(i18n('Starting DocuSeal!'))
 
-  const store = await storeJson.read().const(effects)
-  if (!store) throw new Error(i18n('store.json not found'))
+  const smtp = await storeJson.read((s) => s.smtp).const(effects)
+  if (!smtp) throw new Error(i18n('store.json not found'))
 
-  const { APP_URL, smtp } = store
+  const APP_URL = await primaryUrl.bestUsable(effects).const()
 
   let smtpCredentials: T.SmtpValue | null = null
   if (smtp.selection === 'system') {
