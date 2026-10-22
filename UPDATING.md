@@ -20,4 +20,4 @@ Compare against `dockerVersion` in `startos/manifest/index.ts`.
 
 ## Applying the bump
 
-- Bump `dockerVersion` in `startos/manifest/index.ts` to the new upstream tag. The image tag is assembled from `dockerImage` (`docuseal/docuseal`) and `dockerVersion` and supplied to the `main` image via `source.dockerTag`.
+- Bump `dockerVersion` in `startos/manifest/index.ts` to the new upstream tag. The image tag is assembled from `dockerImage` (`docuseal/docuseal`) and `dockerVersion` and supplied to the `main` image as the `IMAGE` build arg of `source.dockerBuild`.
