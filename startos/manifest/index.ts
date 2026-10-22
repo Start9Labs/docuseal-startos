@@ -16,7 +16,11 @@ export const manifest = setupManifest({
   volumes: ['docuseal'],
   images: {
     main: {
-      source: { dockerTag: `${dockerImage}:${dockerVersion}` },
+      source: {
+        dockerBuild: {
+          buildArgs: { IMAGE: `${dockerImage}:${dockerVersion}` },
+        },
+      },
       arch: ['x86_64', 'aarch64'],
     },
   },
