@@ -2,7 +2,7 @@ import { setupManifest } from '@start9labs/start-sdk'
 import { long, short } from './i18n'
 
 const dockerImage = 'docuseal/docuseal'
-const dockerVersion = '3.3.3'
+const dockerVersion = '3.3.4'
 
 export const manifest = setupManifest({
   id: 'docuseal',
@@ -16,11 +16,7 @@ export const manifest = setupManifest({
   volumes: ['docuseal'],
   images: {
     main: {
-      source: {
-        dockerBuild: {
-          buildArgs: { IMAGE: `${dockerImage}:${dockerVersion}` },
-        },
-      },
+      source: { dockerTag: `${dockerImage}:${dockerVersion}` },
       arch: ['x86_64', 'aarch64'],
     },
   },
