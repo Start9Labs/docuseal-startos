@@ -22,4 +22,3 @@ Compare against `dockerVersion` in `startos/manifest/index.ts`.
 
 - Confirm the exact Docker Hub tag is published for both amd64 and arm64 before updating the pin.
 - Bump `dockerVersion` in `startos/manifest/index.ts` to the new upstream tag. The image tag is assembled from `dockerImage` (`docuseal/docuseal`) and `dockerVersion` in `source.dockerTag` for the `main` image.
-- Update `startos/versions/current.ts` and its localized release notes, following the guide's migration-history rules. Upstream runs its own database migrations at startup; flag any migration cost in the release notes.
