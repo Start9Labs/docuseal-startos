@@ -67,7 +67,7 @@ One model, and both of its fields exist because the value cannot be known until 
 | `APP_URL` | The Set Primary URL action | Kept as chosen, even while the address is not one the OS publishes |
 | `smtp`    | The Configure SMTP action  | StartOS's system SMTP, your own server, or disabled                |
 
-The package never rewrites `APP_URL`. What it gives DocuSeal is the stored address, followed to its hostname's current port and scheme; while that hostname is not one of the interface's published addresses, or nothing is stored, it gives the `.local` address instead (the first published address if there is no `.local` one), and returns to the stored choice when its address comes back.
+The package never rewrites `APP_URL`. What it gives DocuSeal is the stored address, followed to its hostname's current port and scheme; while that hostname is not one of the interface's published addresses, or nothing is stored, it prefers a published public domain (HTTPS first), otherwise the `.local` address, otherwise the first published address, and returns to the stored choice when its address comes back.
 
 **No configuration file reaches the application.** Both values are passed as environment on each start:
 
@@ -96,7 +96,7 @@ The port is bound on the `ui-multi` MultiHost and is not masked. The interface n
 
 Nothing is generated at install. Account creation is DocuSeal's own: the first visit to the web UI registers the administrator.
 
-Install raises the one task, asking for the primary address (see [Tasks](#tasks)); until it is answered DocuSeal uses the `.local` address. That matters more than it might sound: it is the address DocuSeal embeds in the signing-request links it emails to other people, so if those recipients are outside your network, choose a reachable one with [Set Primary URL](#actions) before sending anything.
+Install raises the one task, asking for the primary address (see [Tasks](#tasks)); until it is answered DocuSeal uses the preferred published address — a public domain (HTTPS first), otherwise `.local`, otherwise the first available. That matters more than it might sound: it is the address DocuSeal embeds in the signing-request links it emails to other people, so if those recipients are outside your network, choose a reachable one with [Set Primary URL](#actions) before sending anything.
 
 Email is not configured until you run [Configure SMTP](#actions), and DocuSeal cannot send signing requests without it.
 
@@ -111,7 +111,7 @@ Chooses which published address DocuSeal treats as its own — used for signing-
 - **What it changes:** `APP_URL` in `store.json`, and through it the application's environment on the next start.
 - **Cost:** seconds, then a restart.
 - **Repeat safety:** idempotent. Links already sent keep pointing at the old address, so change it before distributing signing requests rather than after.
-- **Input:** a dropdown of the interface's non-local addresses, with the `.local` one preselected and the current choice prefilled.
+- **Input:** a dropdown of the interface's non-local addresses, with a public domain preferred (HTTPS first), otherwise `.local`, otherwise the first available, and the current choice prefilled.
 
 ### Configure SMTP
 
@@ -124,7 +124,7 @@ Sets up the outbound email DocuSeal needs to send signing requests.
 
 ## Tasks
 
-One task, `important`, on [Set Primary URL](#actions). It is raised while no primary address is stored or the stored one's hostname is not among the interface's published addresses, and clears when you pick one or the stored address comes back. It does not stop the service: DocuSeal runs on the `.local` address meanwhile.
+One task, `important`, on [Set Primary URL](#actions). It is raised while no primary address is stored or the stored one's hostname is not among the interface's published addresses, and clears when you pick one or the stored address comes back. It does not stop the service: DocuSeal uses the preferred published address meanwhile.
 
 ## Health Checks
 
@@ -141,12 +141,12 @@ The 90-second grace covers a first start, where the application creates and migr
 The `docuseal` volume is copied wholesale — `sdk.Backups.ofVolumes('docuseal')`. No dump step and nothing excluded.
 
 - **Included:** the database, every uploaded and signed document, accounts and templates, and `store.json` with the primary URL and SMTP settings.
-- **Restore:** complete, and no reconfiguration is needed. If the restored server does not publish the address the backup recorded, DocuSeal uses the `.local` address and the Set Primary URL task is raised — answer it before sending new signing requests from a restored install.
+- **Restore:** complete, and no reconfiguration is needed. If the restored server does not publish the address the backup recorded, DocuSeal uses the preferred published address and the Set Primary URL task is raised — answer it before sending new signing requests from a restored install.
 
 ## Limitations and Differences
 
 1. **DocuSeal's built-in Email/SMTP settings screen is hidden while SMTP is configured here.** Select Disabled in the action to manage email from inside DocuSeal instead.
-2. **While the chosen primary address is not published, new signing links carry the `.local` address**, which recipients outside your network cannot reach. The Set Primary URL task is raised for as long as that lasts.
+2. **While the chosen primary address is not published, new signing links use the preferred published address** — a public domain (HTTPS first), otherwise `.local`, otherwise the first available. Recipients must be able to reach that address. The Set Primary URL task is raised for as long as that lasts.
 3. **Signing requests need SMTP.** Nothing is sent until it is configured.
 4. **No riscv64 build.** x86_64 and aarch64 only.
 
